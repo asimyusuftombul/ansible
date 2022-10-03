@@ -1,5 +1,10 @@
+$script = <<-SCRIPT
+sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+systemctl restart sshd
+SCRIPT
+
 Vagrant.configure("2") do |config|
-  config.vm.provision "shell", inline: "echo hazirim sahip!"
+  config.vm.provision "shell", inline: $script
 
   config.vm.define "ozan" do |node|
     node.vm.box = "ubuntu/focal64"
