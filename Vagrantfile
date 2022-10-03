@@ -22,10 +22,5 @@ Vagrant.configure("2") do |config|
     node.vm.network "private_network", ip: "192.168.56.13" 
   end
 
-    config.vm.define "seyma" do |node|
-    node.vm.box = "ubuntu/focal64"
-    node.vm.network "private_network", ip: "192.168.56.13" 
-  end
-
 end
 
