@@ -1,0 +1,30 @@
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: install dependencies 
+    ansible.builtin.apt:
+      pkg:
+      - curl
+      - gnupg2
+      - ca-certificates
+      - lsb-release
+      - ubuntu-keyring
+      update_cache: yes
+
+  - name: apt-key ekleme
+    ansible.builtin.apt_key:
+      id: 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+      url: https://nginx.org/keys/nginx_signing.key
+      keyring: /usr/share/keyrings/nginx-archive-keyring.gpg
+
+    ansible.builtin.apt_repository:
+      repo: deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu focal nginx
+      filename: nginx
+      state: present
+
+  - name: Install NGINX
+    ansible.builtin.apt:
+      name: nginx
+      state: present
+      update_cache: yes
