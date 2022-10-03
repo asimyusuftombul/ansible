@@ -18,6 +18,7 @@
       url: https://nginx.org/keys/nginx_signing.key
       keyring: /usr/share/keyrings/nginx-archive-keyring.gpg
 
+  - name: nginx repo ekleme
     ansible.builtin.apt_repository:
       repo: deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu focal nginx
       filename: nginx
