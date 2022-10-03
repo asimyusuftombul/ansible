@@ -1,10 +1,6 @@
 - hosts: all
   become: true
   tasks:
-  
-    - name: install dependencies 
-    ansible.builtin.apt:
-      update_cache: yes
 
   - name: install dependencies 
     ansible.builtin.apt:
@@ -14,6 +10,7 @@
       - ca-certificates
       - lsb-release
       - ubuntu-keyring
+      update_cache: yes
 
   - name: apt-key ekleme
     ansible.builtin.apt_key:
